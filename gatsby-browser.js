@@ -5,3 +5,11 @@
  */
 
 // You can delete this file if you're not using it
+
+// Permite que gatsby al momento de realizar el bundle
+// tomrara todas las vistas y las encerrara en el layout
+
+const React = require("react")
+const Layout = require("./src/components/layout").default
+
+exports.wrapRootElement = ({ element }) => <Layout>{element}</Layout>
