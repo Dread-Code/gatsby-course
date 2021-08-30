@@ -10,7 +10,7 @@ const Thanks = () => {
       <Purchase>
         <h2>Successful Purchase</h2>
         <p>We know you'll be look great!!!</p>
-        <span rol="img" aria-label="emoji">
+        <span role="img" aria-label="emoji">
           💚
         </span>
         <Link to="/">
