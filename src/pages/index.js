@@ -5,13 +5,30 @@ import { SEO } from "../components"
 import styled from "styled-components"
 
 export const query = graphql`
-  query GET_DESCRIPTION {
+  query GET_DATA {
     allSite {
       edges {
         node {
           siteMetadata {
             description
           }
+        }
+      }
+    }
+    allStripePrice {
+      edges {
+        node {
+          product {
+            id
+            name
+            metadata {
+              description
+              img
+              wear
+            }
+          }
+          unit_amount
+          unit_amount_decimal
         }
       }
     }
@@ -29,12 +46,16 @@ const Button = styled.button`
   }
 `
 
-const IndexPage = ({ data }) => (
-  <>
-    <SEO title="Home" />
-    <Jumbo description={data.allSite.edges[0].node.siteMetadata.description} />
-    <Button color="red"> Comprar </Button>
-  </>
-)
+const IndexPage = ({ data }) => {
+  console.log(data)
+  return (
+    <>
+      <SEO title="Home" />
+      <Jumbo
+        description={data.allSite.edges[0].node.siteMetadata.description}
+      />
+    </>
+  )
+}
 
 export default IndexPage
