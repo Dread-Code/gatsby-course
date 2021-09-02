@@ -12,10 +12,13 @@
 const React = require("react")
 const Layout = require("./src/components/layout").default
 const { GlobalStyles } = require("./src/styles")
+const { CardProvider } = require("./src/context")
 
 exports.wrapRootElement = ({ element }) => (
   <>
-    <GlobalStyles />
-    <Layout>{element}</Layout>
+    <CardProvider>
+      <GlobalStyles />
+      <Layout>{element}</Layout>
+    </CardProvider>
   </>
 )
