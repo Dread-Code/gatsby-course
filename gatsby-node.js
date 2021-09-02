@@ -34,6 +34,7 @@ exports.createPages = async ({ graphql, actions }) => {
     createPage({
       path: `${node.product.id}`,
       component: productTemplate,
+      context: node,
     })
   })
 }
