@@ -1,4 +1,4 @@
-import React, { useContext } from "react"
+import React, { useContext, useEffect, useState } from "react"
 import { Link } from "gatsby"
 import { Button, StyledCart } from "../../styles/components"
 import priceFormat from "../../utils/priceFormat"
@@ -6,9 +6,24 @@ import { CartContext } from "../../context"
 
 export default function CartComponent() {
   const { cart } = useContext(CartContext)
+  const [total, setTotal] = useState(0)
+
+  const getTotal = () => {
+    setTotal(
+      cart.reduce(
+        (acc, current) => acc + current.unit_amount * current.quantity
+      )
+    )
+  }
+
+  useEffect(() => {
+    getTotal()
+  }, [])
+  console.log(total)
+
   return (
     <StyledCart>
-      <h2>Shop Cart</h2>
+      z<h2>Shop Cart</h2>
       <table>
         <tbody>
           <tr>
@@ -20,8 +35,7 @@ export default function CartComponent() {
           {cart.map(swag => (
             <tr key={swag.metadata.id}>
               <td>
-                <img src={swag.metadata.img} alt={swag.metadata.name} />{" "}
-                {swag.metadata.name}
+                <img src={swag.metadata.img} alt={swag.name} /> {swag.name}
               </td>
               <td>USD: {priceFormat(swag.unit_amount)}</td>
               <td>{swag.quantity}</td>
@@ -33,7 +47,7 @@ export default function CartComponent() {
       <nav>
         <div>
           <h3>Subtotal</h3>
-          <small>Total:</small>
+          <small>USD {priceFormat(total)}</small>
         </div>
         <div>
           <Link to="/">
