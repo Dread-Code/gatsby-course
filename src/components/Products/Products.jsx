@@ -4,7 +4,6 @@ import priceFormat from "../../utils/priceFormat"
 import { StyledProducts } from "../../styles/components"
 
 const Products = ({ products }) => {
-  console.log(products)
   return (
     <StyledProducts>
       <h2>Productos</h2>
